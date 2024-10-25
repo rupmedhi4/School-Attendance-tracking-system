@@ -12,8 +12,8 @@
 ### 3. Student Routes:
 - `POST /classes/:classId/students` – Add a student to a specific class.
 - `GET /classes/:classId/students` – Fetch all students in a specific class.
-- `PUT /students/:studentId` – Update student data.
-- `DELETE /students/:studentId` – Remove a student from the class.
+- `PUT /classes/students/:studentId` – Update student data.
+- `DELETE /classes/students/:studentId` – Remove a student from the class.
 
 ### 4. Attendance Routes:
 - `POST /classes/:classId/attendance` – Mark attendance for students in a specific class.
