@@ -1,6 +1,7 @@
 const express = require('express')
 const connectedDb = require('./config/db')
 const classRoutes = require('./routes/classRoutes');
+const subjectRoutes = require('./routes/subjectRoute');
 
 require('dotenv').config();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Class routes
 app.use('/classes', classRoutes);
+app.use('/classes', subjectRoutes);
 
 
 

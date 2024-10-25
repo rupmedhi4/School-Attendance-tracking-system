@@ -209,3 +209,95 @@ Fetches the details of a specific class by its ID.
 
 
 
+## POST /classes/:classId/subjects - Add a New Subject to a Specific Class
+
+### Endpoint
+- **URL:** `/classes/:classId/subjects`
+- **Method:** `POST`
+- **Description:** Adds a new subject to a specific class.
+
+### Request Parameters
+- **URL Parameter:**
+  - `classId` (String): Specifies the class in which the subject will be added.
+
+- **Request Body:**
+  ```json
+  {
+    "subjectName": "Mathematics"
+  }
+
+# subjectName (String, Required): Name of the subject to be added to the class.
+
+-**Success Response**
+## Code: 201 Created
+
+```json
+{
+  "message": "Subject added successfully",
+  "subject": {
+      "_id": "64e3d7f5567c8c58fb2a6a2a",
+      "subjectName": "Mathematics",
+      "classId": "64e3d7e4567c8c58fb2a6a19",
+      "createdAt": "2024-10-25T08:37:09.451Z",
+      "updatedAt": "2024-10-25T08:37:09.451Z"
+  }
+}
+```
+# Error Responses
+
+# Code: 400 Bad Request
+> Condition: If subjectName is missing or longer than 4 characters.
+
+```json
+{
+  "message": "subjectName length should be between 1-4"
+}
+
+- **Code:** `404 Not Found`
+  - **Condition:** If the provided `classId` does not match any existing class.
+  - **Content:**
+    ```json
+    {
+      "message": "Class not found"
+    }
+    ```
+- **Code:** `500 Internal Server Error`
+  - **Condition:** Agar server par koi unexpected error ho.
+  - **Content:**
+    ```json
+    {
+      "message": "Error adding subject",
+      "error": "<error details>"
+    }
+    ```
+```json
+{
+  "message": "Error adding subject",
+  "error": "<error details>"
+}
+```
+# Request Example
+
+```http
+POST /classes/64e3d7e4567c8c58fb2a6a19/subjects
+Content-Type: application/json
+```
+```json
+{
+    "subjectName": "Mathematics"
+}
+```
+## Response Example
+```json
+{
+  "message": "Subject added successfully",
+  "subject": {
+      "_id": "64e3d7f5567c8c58fb2a6a2a",
+      "subjectName": "Mathematics",
+      "classId": "64e3d7e4567c8c58fb2a6a19",
+      "createdAt": "2024-10-25T08:37:09.451Z",
+      "updatedAt": "2024-10-25T08:37:09.451Z"
+  }
+}
+```
+---------------------------------------------------------------------------------------------
