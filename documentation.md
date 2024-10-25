@@ -300,4 +300,48 @@ Content-Type: application/json
   }
 }
 ```
----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+
+
+# Get All Subjects for a Specific Class
+## Endpoint
+`GET /classes/:classId/subjects`
+
+### Description
+Fetch all subjects for a specific class identified by `classId`. The response will contain an array of object subject names.
+
+### URL Parameters
+- `classId` (string, required): The ID of the class for which to fetch subjects.
+
+### Responses
+
+#### Success Response
+
+**Code:** 200 OK  
+**Content:**
+```json
+{
+    "data": [
+        {
+            "subjectName": "computer science"
+        },
+        {
+            "subjectName": "science"
+        },
+        {
+            "subjectName": "maths"
+        },
+        {
+            "subjectName": "social science"
+        },
+        {
+            "subjectName": "assamese"
+        },
+        {
+            "subjectName": "assamese m"
+        }
+    ]
+}
+
+----------------------------------------------------------------------------------------------------------------------
