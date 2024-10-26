@@ -343,5 +343,164 @@ Fetch all subjects for a specific class identified by `classId`. The response wi
         }
     ]
 }
+```
+----------------------------------------------------------------------------------------
 
-----------------------------------------------------------------------------------------------------------------------
+# Attendance API 
+
+1. Mark Attendance for a Class
+
+`POST /classes/:classId/attendance`
+
+This endpoint allows teachers to mark attendance for students in a specific class for a 
+
+particular date. If attendance for that date is already marked, it cannot be marked again for the same day.
+
+**Endpoint**
+- URL: `/classes/:classId/attendance`
+- Method: POST
+- URL Parameter:
+    - `:classId `(required): The unique identifier of the class.
+
+## Request Body
+- JSON Format:
+```json
+{
+  "date": "YYYY-MM-DD",
+  "attendance": [
+    {
+      "studentId": "student_id_1",
+      "present": true
+    },
+    {
+      "studentId": "student_id_2",
+      "present": false
+    }
+  ]
+}
+```
+- **date**: Date for which attendance is being marked (in YYYY-MM-DD format).
+- **attendance**: An array of objects where each object includes:
+    - **studentId**: The ID of the student.
+    - **present**: Boolean value indicating if the student is present (true) or absent (false).
+
+## Response
+
+- Success Response:
+    - `Status Code`: 201 Created
+    - Body
+```json
+    {
+  "message": "Attendance marked successfully",
+  "attendance": [
+    {
+      "studentId": "student_id_1",
+      "present": true
+    },
+    ...
+  ]
+}
+
+```
+- Error Response:
+    - Status Code: `400 Bad Request`
+    - Body
+
+```json
+    {
+  "message": "Attendance for this date is already marked"
+}
+```
+    - Status Code: `404 Not Found`
+    - Body
+```json
+{
+  "message": "Class not found."
+}
+```
+# Example Request
+```json
+"http://localhost:3000/classes/671b498c576407f3a0bf5305/attendance"
+
+{
+  "date": "2023-10-26",
+  "attendance": [
+    { "studentId": "63fc25f9c654aa34e5bf3405", "present": true },
+    { "studentId": "63fc25f9c654aa34e5bf3406", "present": false }
+  ]
+}'
+```
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+# Fetch Attendance Records for a Class
+
+`GET /classes/:classId/attendance`
+
+Fetch all attendance records for each student in the specified class.
+
+## Endpoint
+
+- URL: `/classes/:classId/attendance`
+- Method: `GET`
+- URL Parameter:
+    -`:classId (required)`: The unique identifier of the class.
+
+### Response
+- Success Response:
+    - Status Code:` 200 OK`
+    - Body
+```json
+{
+  "classId": "671b498c576407f3a0bf5305",
+  "attendance": [
+    {
+      "studentId": "63fc25f9c654aa34e5bf3405",
+      "name": "John Doe",
+      "attendanceRecords": [
+        {
+          "date": "2023-10-24",
+          "present": true
+        },
+        {
+          "date": "2023-10-25",
+          "present": false
+        }
+      ]
+    },
+    ...
+  ]
+}
+```
+- Error Response:
+    - Status Code: `404 Not Found`
+    - Body:
+```json
+{
+  "message": "Class not found."
+}
+```
+# Example Request
+
+```json
+ GET "http://localhost:3000/classes/671a0bf5305/attendance"
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
