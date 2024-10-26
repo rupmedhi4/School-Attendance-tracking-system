@@ -15,7 +15,11 @@ const studentSchema = new mongoose.Schema({
         trim: true,
         minlength:1,
         maxlength:3
-    }
+    },
+    attendance: [{
+        date: { type: Date, required: true, unique: true }, // Ensure unique date
+        present: { type: Boolean, default: false }
+    }]
 });
 
 module.exports = studentSchema;

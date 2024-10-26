@@ -3,6 +3,7 @@ const connectedDb = require('./config/db')
 const classRoutes = require('./routes/classRoutes');
 const subjectRoutes = require('./routes/subjectRoute');
 const studentRoute = require('./routes/studentsRoute');
+const attendanceRoutes = require('./routes/attendanceRoutes');
 
 require('dotenv').config();
 
@@ -16,27 +17,7 @@ app.use(express.json());
 app.use('/classes', classRoutes);
 app.use('/classes', subjectRoutes);
 app.use('/classes', studentRoute);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use('/classes', attendanceRoutes);
 
 
 
