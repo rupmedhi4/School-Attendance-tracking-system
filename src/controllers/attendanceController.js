@@ -57,34 +57,21 @@ exports.markClassAttendance = async (req, res) => {
 };
 
 
-exports.getClassAttendance = async (req, res) => {
+exports.getAllStudentsAttendance = async (req, res) => {
     const { classId } = req.params;
 
     try {
-        // Find class by ID and retrieve students with their attendance records
-        const classData = await ClassModel.findById(classId).select('students.name students.rollNumber students.attendance');
+        const classData = await ClassModel.findById(classId).select('students');
 
-        // Check if class exists
         if (!classData) {
-            return res.status(404).json({ message: 'Class not found' });
+            return res.status(404).json({ message: "Class not found." });
         }
 
-        // Prepare attendance data for response
-        const attendanceRecords = classData.students.map(student => ({
-            name: student.name,
-            rollNumber: student.rollNumber,
-            attendance: student.attendance
-        }));
-
         res.status(200).json({
-            message: 'Attendance records fetched successfully',
-            attendanceRecords
+            allStudents: classData
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: 'Error fetching attendance records',
-            error: error.message
-        });
+        console.error("Error fetching attendance:", error);
+        res.status(500).json({ message: "Error fetching attendance records.", error: error.message });
     }
 };

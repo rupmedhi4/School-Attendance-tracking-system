@@ -490,7 +490,128 @@ Fetch all attendance records for each student in the specified class.
 
 ```
 
+----------------------------------------------------------------------------------------
 
+
+# Individual Student Attendance Record API
+
+## 1. 1. View Attendance Record for a Specific Student
+
+`GET /student/:classId/:studentId/attendance`
+
+This endpoint allows users to fetch the complete attendance record for a specific student.
+
+
+### Endpoint
+
+- **URL**: `/students/:classId/:studentId/attendance`
+- **Method**: `GET`
+- **URL Parameters**:
+  - `:classId` (required):  The unique identifier for the class.
+  - `:studentId` (required): The unique identifier for the student.
+
+#### Response
+
+- **Success Response**:
+  - **Status Code**: `200 OK`
+  - **Body**:
+    ```json
+    {
+      "studentId": "student_id",
+      "name": "Student Name",
+      "rollNumber":2,
+      "attendance": [
+        {
+          "date": "2023-10-24",
+          "present": true
+  .      },
+        ...
+      ]
+    }
+    ```
+
+- **Error Responses**:
+  - **Status Code**: `404 Not Found`
+  - **Body**:
+    ```json
+    {
+      "message": "Class or student not found."
+    }
+    ```
+
+  - **Status Code**: `500 Internal Server Error`
+  - **Body**:
+    ```json
+    {
+     "message": "Error while fetching attendance records.",
+     "error": "Detailed error message"
+    }
+    ```
+--------------------------------------------------------------------------------------
+
+
+
+## Get All Students' Attendance for a Specific Class
+
+### Endpoint
+`GET /classes/:classId/attendance`
+
+This endpoint allows an admin to retrieve attendance records for all students in a specific class.
+
+#### URL Parameters
+- `classId` (required): The unique identifier for the class.
+
+#### Response
+
+- **Success Response**:
+  - **Status Code**: `200 OK`
+  - **Body**:
+    ```json
+    {
+      "classId": "class_id",
+      "students": [
+        {
+          "studentId": "student_id",
+          "name": "Student Name",
+          "rollNumber": 101,
+          "attendance": [
+            {
+              "date": "2023-10-01",
+              "present": true
+            },
+            {
+              "date": "2023-10-02",
+              "present": false
+            }
+            // More records...
+          ]
+        },
+        // More students...
+      ]
+    }
+    ```
+
+- **Error Responses**:
+  - **404 Not Found**
+    - **Body**:
+      ```json
+      {
+        "message": "Class not found."
+      }
+      ```
+
+  - **500 Internal Server Error**
+    - **Body**:
+      ```json
+      {
+        "message": "Error fetching attendance records.",
+        "error": "Detailed error message"
+      }
+      ```
+
+#### Example Request
+```bash
+curl -X GET "http://localhost:3000/classes/676407f3a0bf5305/attendance"
 
 
 

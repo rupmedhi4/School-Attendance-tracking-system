@@ -20,13 +20,11 @@
 - `GET /classes/:classId/attendance` – Fetch attendance records for a specific class.
 
 ### 5. Individual Student Attendance Routes:
-- `GET /students/:studentId/attendance` – View complete attendance record for a specific student.
-- `GET /students/:studentId/attendance?month=October` – View monthly attendance for a specific student.
-- `GET /students/:studentId/attendance?year=2024` – View yearly attendance for a specific student.
+- `GET /students/:classId/:studentId/attendance` – View complete attendance record for a specific student.
 
-### 6. Admin Reports (Monthly/Yearly Attendance for Class):
-- `GET /classes/:classId/attendance?month=October` – Monthly attendance report for a specific class.
-- `GET /classes/:classId/attendance?year=2024` – Yearly attendance report for a specific class.
+
+### 6. Admin Reports :
+- `GET /classes/:classId/attendance` – get all students attendance
 
 ### 7. Class-wise Student Attendance Summary:
 - `GET /classes/:classId/attendance/summary` – Get total attendance summary for a specific class.
