@@ -5,6 +5,8 @@ const subjectRoutes = require('./routes/subjectRoute');
 const studentRoute = require('./routes/studentsRoute');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const studentAttendanceRoutes = require('./routes/studentAttendanceRoutes');
+const cors = require('cors');
+
 
 require('dotenv').config();
 
@@ -13,6 +15,8 @@ const PORT = process.env.PORT || 4000
 
 // Middleware for parsing JSON
 app.use(express.json());
+app.use(cors());
+
 
 // Class routes
 app.use('/classes', classRoutes);

@@ -3,6 +3,7 @@ const {createClassValidation} = require('../validation/classRoutesValidation')
 
 exports.createClass = async (req, res) => {
     const { className } = req.body;
+    if(!className) return res.status(400).json({message:"header required"})
 
     createClassValidation(req,res)
 
@@ -12,6 +13,7 @@ exports.createClass = async (req, res) => {
             return res.status(400).json({
                 message: 'Class already exists',
             });
+           
         }
 
         const newClass = new ClassModel({ className });
@@ -26,6 +28,7 @@ exports.createClass = async (req, res) => {
         res.status(500).json({
             message: 'Error creating class',
             error: 'Internal Server Error', 
+            error
         });
     }
 };

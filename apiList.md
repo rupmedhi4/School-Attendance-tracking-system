@@ -25,6 +25,3 @@
 
 ### 6. Admin Reports :
 - `GET /classes/:classId/attendance` – get all students attendance
-
-### 7. Class-wise Student Attendance Summary:
-- `GET /classes/:classId/attendance/summary` – Get total attendance summary for a specific class.
